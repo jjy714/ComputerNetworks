@@ -5,12 +5,16 @@ import java.util.* ;
 public class WebServer  {
     public static void main(String argv[]) throws Exception {
         int port = 7030;
+        ServerSocket connectionSocket = new ServerSocket(port);
         while(true){
-            Socket connectionSocket = welcomeSocket.accept();
-            HttpRequest request = new HttpRequest(connectionSocket);
+            Socket socket = connectionSocket.accept();
+            HttpRequest request = new HttpRequest(socket);
             Thread thread = new Thread(request);
             thread.start();
         }
+        os.close();
+        br.close();
+        socket.close();
 
     }
 }
@@ -26,8 +30,8 @@ final class HttpRequest implements Runnable {
 
     private void processRequest() throws Exception {
         // Get a reference to the socket's input and output streams.
-        InputStream is = ?;
-        DataOutputStream os = ?;
+        InputStream is = socket.getInputStream();
+        DataOutputStream os = ;
         // Set up input stream filters.
         BufferedReader br = ?;
     }
@@ -40,5 +44,6 @@ final class HttpRequest implements Runnable {
         }
 
     }
-    private void processRequest() throws Exception { . . . }
+
+
 }
