@@ -2,6 +2,7 @@ package A3;
 
 import java.io.*;
 import java.net.*;
+import java.util.*;
 
 public class webClient {
 
@@ -13,8 +14,7 @@ public class webClient {
         URL url = new URL(urlString);
         HttpURLConnection conn = (HttpURLConnection) url.openConnection();
         conn.setRequestMethod("GET");
-
-        conn.setRequestProperty("User-Agent", "Mozilla/5.0 (Windows NT 6.1; rv:5.0) Gecko/20100101 Firefox/5.0");
+        conn.setRequestProperty("User-Agent", "9918920236/JUNYOUNGJUNG/WEBCLIENT/COMPUTERNETWORK");
         conn.setRequestProperty("Accept", "text/html");
         conn.setConnectTimeout(timeout);
 
@@ -57,7 +57,7 @@ public class webClient {
         conn.setUseCaches(false);
         conn.setInstanceFollowRedirects(true);
         conn.setRequestProperty("Content-Type", "text/html;charset=UTF-8");
-        conn.setRequestProperty("User-Agent", "Mozilla/5.0 (Windows NT 6.1; rv:5.0) Gecko/20100101 Firefox/5.0");
+        conn.setRequestProperty("User-Agent", "9918920236/JUNYOUNGJUNG/WEBCLIENT/COMPUTERNETWORK");
         conn.setRequestProperty("Accept", "text/xml");
         conn.setConnectTimeout(timeout);
         conn.connect();
@@ -92,7 +92,25 @@ public class webClient {
         }
         return sb.toString();
     }
+    public static void main(String args[]) throws IOException {
+        int command = 0;
+        String newUrl = "";
+        Scanner scanner = new Scanner(System.in);
+        webClient webClient = new webClient();
 
-
-
+        System.out.print("Select the command (1: GET, 2: POST, 0: Exit): ");
+        command = scanner.nextInt();
+        System.out.print("Enter the URL: ");
+        newUrl = scanner.next();
+        if (command == 1) {
+            webClient.getWebContentByGet(newUrl, "UTF-8", 10000);
+            System.out.println("Done");
+        }
+        if(command == 2){
+            webClient.getWebContentByPost(newUrl, "UTF-8", "data", 10000);
+        }
+        if(command == 0){
+            System.exit(0);
+        }
+    }
 }
