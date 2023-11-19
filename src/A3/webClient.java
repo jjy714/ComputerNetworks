@@ -95,6 +95,7 @@ public class webClient {
     public static void main(String args[]) throws IOException {
         int command = 0;
         String newUrl = "";
+        String newData = "";
         Scanner scanner = new Scanner(System.in);
         webClient webClient = new webClient();
 
@@ -103,11 +104,13 @@ public class webClient {
         System.out.print("Enter the URL: ");
         newUrl = scanner.next();
         if (command == 1) {
-            webClient.getWebContentByGet(newUrl, "UTF-8", 10000);
+            System.out.println(webClient.getWebContentByGet(newUrl, "UTF-8", 10000));
             System.out.println("Done");
         }
         if(command == 2){
-            webClient.getWebContentByPost(newUrl, "UTF-8", "data", 10000);
+            System.out.print("Enter the data: ");
+            newData = scanner.next();
+            System.out.println(webClient.getWebContentByPost(newUrl, newData, "UTF-8", 10000));
         }
         if(command == 0){
             System.exit(0);
